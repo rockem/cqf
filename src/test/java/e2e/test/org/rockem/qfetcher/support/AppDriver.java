@@ -29,22 +29,24 @@ public class AppDriver {
         Application.main();
     }
 
-    public void fetchFrom(String manifest) throws IOException {
-        CloseableHttpResponse response = httpClient.execute(createFetchRequestFor(manifest));
+    public void fetchFor(String manifest, String... exts) throws IOException {
+        CloseableHttpResponse response = httpClient.execute(createFetchRequestFor(manifest, exts));
         assertThat(response.getStatusLine().getStatusCode()).isEqualTo(200);
         retrievedQuestions = new Gson().fromJson(EntityUtils.toString(response.getEntity()), JsonObject.class);
     }
 
-    private HttpPost createFetchRequestFor(String manifest) throws UnsupportedEncodingException {
+    private HttpPost createFetchRequestFor(String manifest, String[] exts) throws UnsupportedEncodingException {
         HttpPost httpPost = new HttpPost(APP_DOMAIN + "/api/v1/fetch");
         httpPost.setHeader("Content-Type", "application/json");
-        httpPost.setEntity(new StringEntity(createRequestBodyFor(manifest)));
+        httpPost.setEntity(new StringEntity(createRequestBodyFor(manifest, exts)));
         return httpPost;
     }
 
-    private String createRequestBodyFor(String manifest) {
+    private String createRequestBodyFor(String manifest, String[] exts) {
         return new Gson().toJson(
-                ImmutableMap.of("manifest", ManifestProvider.URL + "/" + manifest));
+                ImmutableMap.of(
+                        "manifest", ManifestProvider.URL + "/" + manifest,
+                        "filter", exts));
     }
 
     public void retrievedNoQuestions() {

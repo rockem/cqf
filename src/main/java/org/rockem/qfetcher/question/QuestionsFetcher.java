@@ -1,5 +1,6 @@
-package org.rockem.qfetcher;
+package org.rockem.qfetcher.question;
 
+import org.rockem.qfetcher.extractor.CachedQuestionExtractor;
 import org.rockem.qfetcher.files.FileFetcher;
 import org.rockem.qfetcher.extractor.QuestionExtractor;
 
@@ -17,7 +18,8 @@ public class QuestionsFetcher {
 
     public QuestionsFetcher(FileFetcher fileFetcher, List<QuestionExtractor> questionExtractors) {
         this.fileFetcher = fileFetcher;
-        extractorMap = questionExtractors.stream().collect(toMap(QuestionExtractor::getType, e -> e));
+        extractorMap = questionExtractors.stream().collect(
+                toMap(QuestionExtractor::getType, CachedQuestionExtractor::new));
     }
 
     public List<Questions.Question> fetchFrom(List<String> docs) {

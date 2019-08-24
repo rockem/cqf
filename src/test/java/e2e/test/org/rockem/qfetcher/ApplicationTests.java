@@ -25,15 +25,20 @@ class ApplicationTests {
 
     @Test
     void retrieveNoQuestionsForInvalidQuestionsFile() throws Exception {
-        app.fetchFrom(INVALID_IMAGE_FILE);
+        app.fetchFor(INVALID_IMAGE_FILE);
         ocr.receivedImage(firstFileFor(INVALID_IMAGE_FILE));
         app.retrievedNoQuestions();
     }
 
     @Test
-    void retrieveQuestionFromImageFile() throws IOException {
-        app.fetchFrom(VALID_IMAGE_FILE);
+    void retrieveQuestionFromImageFile() throws Exception {
+        app.fetchFor(VALID_IMAGE_FILE);
         app.retrievedQuestion("Chegg\nR\n", "png");
+    }
 
+    @Test
+    void filterGivenExtensions() throws Exception {
+        app.fetchFor(VALID_IMAGE_FILE, "csv");
+        app.retrievedNoQuestions();
     }
 }

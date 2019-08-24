@@ -4,8 +4,8 @@ import com.google.common.collect.ImmutableMap;
 import org.junit.jupiter.api.Test;
 import org.rockem.qfetcher.files.FileFetcher;
 import org.rockem.qfetcher.extractor.QuestionExtractor;
-import org.rockem.qfetcher.Questions.Question;
-import org.rockem.qfetcher.QuestionsFetcher;
+import org.rockem.qfetcher.question.Questions.Question;
+import org.rockem.qfetcher.question.QuestionsFetcher;
 
 import java.util.List;
 import java.util.Map;

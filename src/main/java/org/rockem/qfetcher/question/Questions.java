@@ -1,4 +1,4 @@
-package org.rockem.qfetcher;
+package org.rockem.qfetcher.question;
 
 import lombok.*;
 

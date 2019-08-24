@@ -1,9 +1,11 @@
 package test.org.rockem.qfetcher;
 
 import org.junit.jupiter.api.Test;
+import org.rockem.qfetcher.question.FetchRequest;
 import org.rockem.qfetcher.files.ManifestFetcher;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static java.util.Arrays.asList;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ManifestFetcherTest {
 
@@ -11,6 +13,6 @@ class ManifestFetcherTest {
     void failOnFailureToFetch() {
         assertThrows(
                 ManifestFetcher.FailedToFetchManifestException.class,
-                () -> new ManifestFetcher("http://unknown").fetch());
+                () -> new ManifestFetcher(new FetchRequest("http://unknown", asList())).fetch());
     }
 }

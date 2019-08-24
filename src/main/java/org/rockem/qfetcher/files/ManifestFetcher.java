@@ -1,5 +1,6 @@
 package org.rockem.qfetcher.files;
 
+import org.rockem.qfetcher.question.FetchRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -12,18 +13,18 @@ import static java.util.Arrays.asList;
 public class ManifestFetcher {
 
     private final RestTemplate restTemplate = new RestTemplate();
-    private final String manifestUrl;
+    private final FetchRequest fetchRequest;
 
-    public ManifestFetcher(String manifestUrl) {
-        this.manifestUrl = manifestUrl;
+    public ManifestFetcher(FetchRequest fetchRequest) {
+        this.fetchRequest = fetchRequest;
     }
 
     public List<String> fetch() {
         try {
-            ResponseEntity<String> manifest = restTemplate.getForEntity(manifestUrl, String.class);
-            return asList(manifest.getBody().split("\n"));
+            ResponseEntity<String> manifest = restTemplate.getForEntity(fetchRequest.getManifest(), String.class);
+            return new DocsFilter(fetchRequest.getFilter()).filter(asList(manifest.getBody().split("\n")));
         } catch(RestClientException e) {
-            throw new FailedToFetchManifestException(format("Failed to fetch: %s", manifestUrl), e);
+            throw new FailedToFetchManifestException(format("Failed to fetch: %s", fetchRequest.getManifest()), e);
         }
     }
 
