@@ -1,0 +1,27 @@
+{
+  "id" : "7e93b8cb-7895-3476-81ca-8cd95a9fc47b",
+  "request" : {
+    "url" : "/v1/images:annotate?key=AIzaSyBu67SMWt4JaMWij95EsG3ewlzXMx2Z510",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalTo" : "{\"requests\":[{\"image\":{\"content\":\"aW52YWxpZCBpbnZhbGlkIGludmFsaWQK\"},\"features\":[{\"type\":\"TEXT_DETECTION\"}]}]}"
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-v1-images_annotate-UeIlp.json",
+    "headers" : {
+      "Content-Type" : "application/json; charset=UTF-8",
+      "Vary" : [ "Origin", "X-Origin", "Referer" ],
+      "Date" : "Fri, 23 Aug 2019 22:48:22 GMT",
+      "Server" : "ESF",
+      "Cache-Control" : "private",
+      "X-XSS-Protection" : "0",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-Content-Type-Options" : "nosniff",
+      "Alt-Svc" : "quic=\":443\"; ma=2592000; v=\"46,43,39\"",
+      "Transfer-Encoding" : "chunked"
+    }
+  },
+  "uuid" : "7e93b8cb-7895-3476-81ca-8cd95a9fc47b"
+}

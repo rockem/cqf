@@ -1,0 +1,4 @@
+google:
+  ocr:
+    url: https://vision.googleapis.com/v1/images:annotate
+    key: ${OCR_API_KEY}

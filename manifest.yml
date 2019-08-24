@@ -1,0 +1,8 @@
+---
+applications:
+- name: q-fetcher
+  memory: 256M
+  instances: 1
+  host: q-fetcher
+  domain: guides.spring.io
+  path: build/libs/gs-rest-service-0.1.0.jar
